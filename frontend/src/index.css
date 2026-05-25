@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-gray-950 text-gray-100 antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-900;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-700 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-600;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-md border border-white/10;
+  }
+
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-md border border-white/10;
+  }
+
+  .btn-primary {
+    @apply bg-brand-600 hover:bg-brand-500 text-white font-medium px-4 py-2 rounded-xl transition-all duration-200 active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply bg-white/5 hover:bg-white/10 text-gray-300 font-medium px-4 py-2 rounded-xl transition-all duration-200 active:scale-95;
+  }
+
+  .service-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold;
+  }
+}
+
+/* Voice button ripple */
+.voice-ripple {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  animation: ripple 1.5s ease-out infinite;
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Typing indicator */
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5b6ef5;
+  animation: typing-bounce 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+}
+
+/* Message animations */
+.message-enter {
+  animation: messageEnter 0.3s ease-out;
+}
+
+@keyframes messageEnter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Markdown-like content */
+.prose-dark p { @apply mb-2 last:mb-0; }
+.prose-dark strong { @apply text-white font-semibold; }
+.prose-dark code { @apply bg-white/10 px-1 py-0.5 rounded text-sm font-mono; }
+.prose-dark ul { @apply list-disc list-inside space-y-1; }
+.prose-dark ol { @apply list-decimal list-inside space-y-1; }
+.prose-dark h3 { @apply text-white font-semibold text-sm mb-1; }
